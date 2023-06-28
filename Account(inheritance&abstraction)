@@ -1,0 +1,84 @@
+/*** file name Month.java ***/
+
+abstract class Account{
+	private int Accno;
+	private String title;
+	private double balance;
+	
+	public Account(){
+		this(1000,"",0);
+	}
+	public Account(int n,String t,double b){
+		Accno=n;
+		title=t;
+		balance=b;
+	}
+	public int getAccno(){
+		return Accno;
+	}
+	public void setTitle(String t){
+		title=t;
+	}
+	public double getBalance(){
+		return balance;
+	}		
+	public String getTitle(){
+		return title;
+	}
+	public void deposit(double amt){
+		balance+=amt;
+		System.out.println("deposit balance....."+balance);
+	}
+	abstract void withdraw(double amt);
+}
+class SavingsAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for SavingsAccount.......");}
+	public void transferFunds(){
+	System.out.println("transfering funds..........");}
+	
+}
+class CurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for CurrentAccount.......");}
+	public void CalODInt(){
+	System.out.println("transfering funds CalODInt..........");}
+	
+}
+class RecurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for ReccurentAccount.......");}
+	public void calMatAmount(){
+	System.out.println("transfering funds calMatAmount..........");}
+	
+}
+class Transaction{
+	public void doAction(Account a){
+		a.deposit(1000);
+		a.withdraw(200);
+		if(a instanceof SavingsAccount)
+		{
+			SavingsAccount s=(SavingsAccount)a;
+			s.transferFunds();
+		}else if(a instanceof CurrentAccount)
+		{
+			CurrentAccount c=(CurrentAccount)a;
+			c.CalODInt();
+		}else if(a instanceof RecurrentAccount)
+		{
+			RecurrentAccount r=(RecurrentAccount)a;
+			r.calMatAmount();
+		}
+	}
+}
+class Month{
+	public static void main(String args[]){
+		Transaction t=new Transaction();
+		SavingsAccount s=new SavingsAccount();
+		t.doAction(s);
+		CurrentAccount c=new CurrentAccount();
+		t.doAction(c);
+		RecurrentAccount r=new RecurrentAccount();
+		t.doAction(r);
+	}
+}
