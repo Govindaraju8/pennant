@@ -32,5 +32,49 @@ public class Program3{
 		s2.method4();
 	}
 }
+/***********************************************************************************************************/
+/* interface implements interface*/
 
+interface Model1{
+	void method1();
+	void method2();
+}
+interface Model2 extends Model1{
+	void method3();
+	void method4();
+}
+/*class Sample1 implements Model1{
+	public void method1(){
+		System.out.println("model1 is executing......");
+	}
+	public void method2(){
+		System.out.println("model2 is executing......");
+	}
+}*/
+class Sample2 implements Model2{
+	public void method1(){
+		System.out.println("model1 is executing......");
+	}
+	public void method2(){
+		System.out.println("model2 is executing......");
+	}
+	public void method3(){
+		System.out.println("model3 is executing......");
+	}
+	public void method4(){
+		System.out.println("model4 is executing......");
+	}
+}
+public class Program3{
+	public static void main(String args[]){
+		//Model1 i1=new Sample1();
+		//Model2 i2=new Sample2();
+		Sample1 s1=new Sample1();
+		Sample2 s2=new Sample2();
+		s2.method1();
+		s2.method2();
+	}
+}
+
+	
 	
