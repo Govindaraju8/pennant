@@ -1,0 +1,124 @@
+class Example extends Thread{
+	public void display(){
+ 		System.out.println("hello thread is executing......");
+   }
+	public void run(){
+ 		display();
+   }
+}
+class ThreadExample{
+	public static void main(String args[]){
+ 		Example s=new Example();
+   		s.start();
+     }
+}
+
+/***************************Implementing Runnable Interface*******************************/
+
+/*class Example implements Runnable{
+	public void display(){
+		System.out.println("hello.....");
+	}
+	public void run(){
+	display();
+	}
+}
+
+class Degree{
+	public static void main(String args[]){
+		Example t=new Example();
+		Thread e=new Thread(t);
+		e.start();
+	}
+}*/
+
+
+
+/*************************************Multiple threads are running*********************************/
+/*
+class Multiexample extends Thread{
+	public void display(){
+		System.out.println("Thread:"+Thread.currentThread().getId()+"is running");
+	}
+	public void run(){
+		display();
+	}
+}
+class Degree{
+	public static void main(String args[]){
+		for(int i=0;i<5;i++){
+			Multiexample m=new Multiexample();
+			m.start();}
+	}
+}
+*/
+
+/*******************************************************************************************************/
+
+class Table14 extends Thread{
+    public void run(){
+	for(int i=1;i<=1000;i++)
+	    System.out.println("13 *"+i+"="+(13*i));
+    }
+}
+class Table19 extends Thread{
+    public void run(){
+	for(int i=1;i<=1000;i++)
+	    System.out.println("17 *"+i+"="+(17*i));
+    }
+}
+class ThreadDemo1{
+	public static void main(String[] args){
+		Table14 t14=new Table14();
+		Table19 t19=new Table19();
+		t14.start();
+		t19.start();
+	}
+}
+/********************************************Thread Synchronization*****************************************/
+
+
+class Example{
+   synchronized public void print(int n){
+        for(int i=0;i<=5;i++){
+            try{
+                System.out.println(i*n);
+                Thread.sleep(1000);
+            }
+            catch(Exception e){
+                System.out.println("error occurs...."+e);
+            }
+        }
+    }
+}
+class ExampleThread1 extends Thread{
+    private Example exe;
+    ExampleThread1(Example e){
+        exe=e;
+    }
+    
+    public void run(){
+        exe.print(5);
+    }
+}
+class ExampleThread2 extends Thread{
+    private Example exe;
+    ExampleThread2(Example e){
+        exe=e;
+    }
+    
+    public void run(){
+        exe.print(50);
+    }
+}
+public class MainExe{
+    public static void main(String args[]){
+        Example ob=new Example();
+        ExampleThread1 t1=new ExampleThread1(ob);
+  
+        t1.start();
+        ExampleThread2 t2=new ExampleThread2(ob);
+        t2.start();
+        System.out.println("this is main thread.........");
+    }
+}
