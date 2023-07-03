@@ -12,4 +12,42 @@ public class LambdaClass{
     }
 }
 
-/**************
+/**************using lamdda expressions and only no parametric synytax**************/
+interface Lamdaexe{
+    void Stringexe();
+}
+public class LambdaClass{
+    public static void main(String args[]){
+        Lamdaexe l=() -> {
+            System.out.println("hello");
+        };
+        l.Stringexe();
+    }
+}
+/**************** using one parametric syntax***************/
+interface Lamdaexe{
+    String Stringexe(String s);
+}
+public class LambdaClass{
+    public static void main(String args[]){
+        Lamdaexe l=(a)-> {
+            return "hello " +a;
+        };
+        System.out.println(l.Stringexe("hehe"));
+    }
+}
+/**************** using two parameters*************/
+interface Lamdaexe{
+    int Stringexe(int i,int j);
+}
+public class LambdaClass{
+    public static void main(String args[]){
+        Lamdaexe l=(a,b)-> {
+            return a+b;
+        };
+// for single line code 
+//Lamdaexe l=(a,b)-> a+b;
+        System.out.println(l.Stringexe(10,11));
+    }
+}
+
