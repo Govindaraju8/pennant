@@ -85,3 +85,18 @@ public class LambdaClass{
         t.start();
     }
 }
+
+
+public class LambdaClass{
+    public static void main(String args[]){
+        int a=12;
+        int b=13;
+        Runnable l=()-> {
+            System.out.println("first elements......"+a);
+            System.out.println("first elements......"+b);
+            System.out.println("Summation of 2 numbers......"+(a+b));
+        };
+        Thread t=new Thread(l);
+        t.start();
+    }
+}  
