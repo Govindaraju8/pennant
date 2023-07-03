@@ -50,4 +50,38 @@ public class LambdaClass{
         System.out.println(l.Stringexe(10,11));
     }
 }
+/********************* for multiple lines*************/
+interface Lamdaexe{
+    int Stringexe(int i,int j);
+}
+public class LambdaClass{
+    public static void main(String args[]){
+        Lamdaexe l=(a,b)->{
+            System.out.println("the first variable....."+a);
+            System.out.println("the second variable......"+b);
+            return a+b;
+        };
+        
+        System.out.println("Summation of 2 variables is......"+l.Stringexe(10,11));
+    }
+}
+/****** using threads*****************/
 
+public class LambdaClass{
+    public static void main(String args[]){
+        Runnable l=()-> 
+        System.out.println("hello");
+        Thread t=new Thread(l);
+        t.start();
+    }
+}
+
+
+public class LambdaClass{
+    public static void main(String args[]){
+        Runnable l=()-> 
+        System.out.println("hello");
+        Thread t=new Thread(l);
+        t.start();
+    }
+}
