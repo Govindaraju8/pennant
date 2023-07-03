@@ -1,0 +1,15 @@
+/********** not using lamda expressions using anonymous classes ,,,,,,, using no parametric syntax***********/
+interface Lamdaexe{
+    void Stringexe();
+}
+public class LambdaClass{
+    public static void main(String args[]){
+        new Lamdaexe(){
+            public void Stringexe(){
+                System.out.println("hello");
+            }
+        }.Stringexe();
+    }
+}
+
+/**************
