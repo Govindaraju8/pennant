@@ -36,3 +36,66 @@ public class TestCampareTo{
         
     }
 }
+
+
+/********************************* using anonymous classes************************/
+import java.util.*;
+
+public class TestCampareTo {
+    public static void main(String args[]) {
+        ArrayList<Student> s = new ArrayList<Student>();
+        s.add(new Student("reshu", 52, 20) {
+            public int compareTo(Student s) {
+                if (age == s.age)
+                    return 0;
+                else if (age > s.age)
+                    return 1;
+                else
+                    return -1;
+            }
+        });
+        s.add(new Student("nazzu", 50, 21) {
+            public int compareTo(Student s) {
+                if (age == s.age)
+                    return 0;
+                else if (age > s.age)
+                    return 1;
+                else
+                    return -1;
+            }
+        });
+        s.add(new Student("masti", 53, 22) {
+            public int compareTo(Student s) {
+                if (age == s.age)
+                    return 0;
+                else if (age > s.age)
+                    return 1;
+                else
+                    return -1;
+            }
+        });
+
+        Collections.sort(s);
+        for (Student st : s) {
+            System.out.println("name of the student....." + st.name);
+            System.out.println("id of the student......." + st.Stdid);
+            System.out.println("Age of the Student" + st.age);
+            System.out.println("*******************************************************");
+        }
+    }
+
+    static abstract class Student implements Comparable<Student> {
+        String name;
+        int Stdid;
+        int age;
+
+        public Student(String n, int i, int a) {
+            name = n;
+            Stdid = i;
+            age = a;
+        }
+
+        public abstract int compareTo(Student s);
+    }
+}
+/**************************
