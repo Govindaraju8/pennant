@@ -92,8 +92,8 @@ public class Hashmapp1{
 import java.util.*;
 public class HashMapexe{
     public static void main(String args[]){
-        Map<String,HashMap<Integer,Bookexe>> mymap=new HashMap<String,HashMap<Integer,Bookexe>>();
-        HashMap<Integer,Bookexe> First=new HashMap<Integer,Bookexe>();
+        Map<String, HashMap<Integer,Bookexe>> mymap=new HashMap<String,HashMap<Integer,Bookexe>>();
+        HashMap<Integer, Bookexe> First=new HashMap<Integer,Bookexe>();
         // for department CSE
         First.put(1,new Bookexe("A","a1","a2"));
         First.put(2,new Bookexe("B","b1","b2"));
@@ -115,16 +115,32 @@ public class HashMapexe{
         mymap.put("EEE",Third);
         
         
-        for(Map.Entry<String ,HashMap<Integer, Bookexe>> m : mymap.entrySet()){
+        for(Map.Entry<String ,HashMap<Integer, Bookexe>> m : mymap.entrySet())
+        {
             String k=m.getKey();
-            HashMap<Integer,Bookexe> v=m.getValue();
+            
             System.out.println("key element....."+k);
-            System.out.println("value element....."+v);
+            
+            HashMap<Integer,Bookexe> v=m.getValue();
+            
+            for(Map.Entry<Integer, Bookexe> bookEntry : v.entrySet())
+            {
+                
+                int bookid= bookEntry.getKey();
+                
+                Bookexe bookval= bookEntry.getValue();
+                
+                System.out.println("Book ID: " + bookid);
+                System.out.println("Book Title: " + bookval.getTitle());
+                System.out.println("Book author: " + bookval.getAuthor());
+                System.out.println("Book publisher: " + bookval.getPublisher());
+            }
+            
         }
-        
-        
     }
 }
+
+
 class Bookexe{
     private String title;
     private String author;
