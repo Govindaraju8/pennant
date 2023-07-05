@@ -1,0 +1,93 @@
+
+public class Ticket{
+    public static void main(String args[]){
+        Ticket t=new Ticket(1,123,"14-11-2001","vijayawada","vizag");
+        Passenger pas[]=new Passenger[5];
+        pas[0]=new Passenger("reshu",20,"f");
+        pas[1]=new Passenger("nazzu",21,"f");
+        pas[2]=new Passenger("nazi",23,"m");
+        pas[3]=new Passenger("raju",74,"m");
+        pas[4]=new Passenger("ramya",41,"f");
+        t.setPassenger(pas);
+        t.display();
+    
+    }
+    int Trainno;
+    int Ticketno;
+    String date;
+    String source;
+    String dist;
+    Passenger[] passenger;
+     public Ticket(int tn,int tickno,String d,String s,String ds)
+    {
+        Trainno=tn;
+        Ticketno=tickno;
+        date=d;
+        source=s;
+        dist=ds;
+    }
+    public void setPassenger(Passenger[] p){
+        passenger=p;
+    }
+    public int getTrainno(){
+        return Trainno;
+    }
+    public int getTicketno(){
+        return Ticketno;
+    }
+    public String getDate(){
+        return date;
+    }
+    public String getSource(){
+        return source;
+    }
+    public String getDist(){
+        return dist;
+    }
+    public void display(){
+        System.out.println("TicketNo......"+getTicketno());
+        System.out.println("Trainnumber......"+getTrainno());
+        System.out.println("date ......"+getDate());
+        System.out.println("Source......"+getSource());
+        System.out.println("destination......"+getDist());
+        for(Passenger t:passenger)
+         {
+         System.out.println("passenger name:  "+t.getName()+"   "+"age :  "+ t.getAge()+"   "+"gender :"+t.getGender()+"   "+"ticketcost:  "+ t.getTicketCost());
+        }
+    }
+}
+class Passenger{
+    private String name;
+    private int age;
+    private String gender;
+    private float ticketcost;
+    private static float basePrice=350;
+    public Passenger(String n,int a,String g)
+    {
+        name=n;
+        age=a;
+        gender=g;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getAge(){
+        return age;
+    }
+    public String getGender(){
+        return gender;
+    }
+    public float getTicketCost(){
+        if ((age > 65 && gender == "m") || (age > 58 && gender == "f"))
+			ticketcost = basePrice * 0.75f;
+		else if (age < 5)
+			ticketcost = 0;
+		else if (age >=5 && age <= 12)
+			ticketcost = basePrice * 0.50f;
+		else
+			ticketcost = basePrice;
+    return ticketcost;
+    }
+}
+
+/*********************************using array list*********************/
