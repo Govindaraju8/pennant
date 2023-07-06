@@ -187,3 +187,293 @@ public class Month{
 }
 
 
+/************************ bounded generics using upperbounded*****/
+import java.util.*;
+abstract class Account{
+	private int Accno;
+	private String title;
+	private double balance;
+	
+	public Account(){
+		this(1000,"",0);
+	}
+	public Account(int n,String t,double b){
+		Accno=n;
+		title=t;
+		balance=b;
+	}
+	public int getAccno(){
+		return Accno;
+	}
+	public void setTitle(String t){
+		title=t;
+	}
+	public double getBalance(){
+		return balance;
+	}		
+	public String getTitle(){
+		return title;
+	}
+	public void deposit(double amt){
+		balance+=amt;
+		System.out.println("deposit balance....."+balance);
+	}
+	abstract void withdraw(double amt);
+	abstract void intrestCal();
+}
+class IntrestCal<T extends Account>{
+    public void retriveamt(List<T> l){
+        for(T a:l){
+            a.intrestCal();
+        }
+
+    }
+}
+class SavingsAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for SavingsAccount.......");
+	
+	}
+	public void intrestCal(){
+	System.out.println("intrestCal over ridding for SavingsAccount.......");
+	}
+	public void transferFunds(){
+	System.out.println("transfering funds..........");}
+	
+}
+class CurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for CurrentAccount.......");}
+	public void intrestCal(){
+	System.out.println("intrestCal over ridding for CurrentAccount.......");}
+	public void CalODInt(){
+	System.out.println("transfering funds CalODInt..........");}
+	
+}
+class RecurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for ReccurentAccount.......");}
+	public void intrestCal(){
+	System.out.println("intrestCal over ridding for ReccurentAccount.......");}
+	public void calMatAmount(){
+	System.out.println("transfering funds calMatAmount..........");}
+	
+}
+class Transaction{
+	public void doAction(Account a){
+		a.deposit(1000);
+		a.withdraw(200);
+		//a.intrestCal();
+		if(a instanceof SavingsAccount)
+		{
+			SavingsAccount s=(SavingsAccount)a;
+			s.transferFunds();
+		}else if(a instanceof CurrentAccount)
+		{
+			CurrentAccount c=(CurrentAccount)a;
+			c.CalODInt();
+		}else if(a instanceof RecurrentAccount)
+		{
+			RecurrentAccount r=(RecurrentAccount)a;
+			r.calMatAmount();
+		}
+		System.out.println();
+	}
+}
+public class Month{
+	public static void main(String args[]){
+		Transaction t=new Transaction();
+		SavingsAccount s=new SavingsAccount();
+		t.doAction(s);
+		CurrentAccount c=new CurrentAccount();
+		t.doAction(c);
+		RecurrentAccount r=new RecurrentAccount();
+		t.doAction(r);
+		IntrestCal ob=new IntrestCal();
+		List<SavingsAccount> sacc=new ArrayList<>();
+		List<CurrentAccount> cacc=new ArrayList<>();
+		List<RecurrentAccount> racc=new ArrayList<>();
+		SavingsAccount s1=new SavingsAccount();
+		SavingsAccount s2=new SavingsAccount();
+		SavingsAccount s3=new SavingsAccount();
+		sacc.add(s1);
+		sacc.add(s2);
+		sacc.add(s3);
+		ob.retriveamt(sacc);
+		CurrentAccount c1=new CurrentAccount();
+		CurrentAccount c2=new CurrentAccount();
+		CurrentAccount c3=new CurrentAccount();
+		cacc.add(c1);
+		cacc.add(c2);
+		cacc.add(c3);
+		ob.retriveamt(cacc);
+		RecurrentAccount r1=new RecurrentAccount();
+		RecurrentAccount r2=new RecurrentAccount();
+		RecurrentAccount r3=new RecurrentAccount();
+		racc.add(r1);
+		racc.add(r2);
+		racc.add(r3);
+		ob.retriveamt(racc);
+	}
+}
+
+
+
+/**********************lower bounded wildcard generic ***************/
+Please note that using a lower bounded wildcard (? super SavingsAccount) treats the elements as Object. 
+Therefore, you need to perform the necessary type checks and casts to access methods specific to the Account class.
+
+import java.util.*;
+abstract class Account{
+	private int Accno;
+	private String title;
+	private double balance;
+	
+	public Account(){
+		this(1000,"",0);
+	}
+	public Account(int n,String t,double b){
+		Accno=n;
+		title=t;
+		balance=b;
+	}
+	public int getAccno(){
+		return Accno;
+	}
+	public void setTitle(String t){
+		title=t;
+	}
+	public double getBalance(){
+		return balance;
+	}		
+	public String getTitle(){
+		return title;
+	}
+	public void deposit(double amt){
+		balance+=amt;
+		System.out.println("deposit balance....."+balance);
+	}
+	abstract void withdraw(double amt);
+	abstract void intrestCal();
+}
+
+class IntrestCal{
+    public void retriveamt(List<? super SavingsAccount> l){
+        for(Object a:l){
+            if(a instanceof Account){
+                Account obj=(Account) a;
+                obj.intrestCal();
+            }
+        }
+
+    }
+}
+class IntrestCal{
+    public void retriveamt(List<? super CurrentAccount> l){
+        for(Object a:l){
+            if(a instanceof Account){
+                Account obj=(Account) a;
+                obj.intrestCal();
+            }
+        }
+
+    }
+}
+class IntrestCal{
+    public void retriveamt(List<? super RecurrentAccount> l){
+        for(Object a:l){
+            if(a instanceof Account){
+                Account obj=(Account) a;
+                obj.intrestCal();
+            }
+        }
+
+    }
+}
+class SavingsAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for SavingsAccount.......");
+	
+	}
+	public void intrestCal(){
+	System.out.println("intrestCal over ridding for SavingsAccount.......");
+	}
+	public void transferFunds(){
+	System.out.println("transfering funds..........");}
+	
+}
+class CurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for CurrentAccount.......");}
+	public void intrestCal(){
+	System.out.println("intrestCal over ridding for CurrentAccount.......");}
+	public void CalODInt(){
+	System.out.println("transfering funds CalODInt..........");}
+	
+}
+class RecurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for RecurrentAccount.......");}
+	public void intrestCal(){
+	System.out.println("intrestCal over ridding for RecurrentAccount.......");}
+	public void calMatAmount(){
+	System.out.println("transfering funds calMatAmount..........");}
+	
+}
+class Transaction{
+	public void doAction(Account a){
+		a.deposit(1000);
+		a.withdraw(200);
+
+		if(a instanceof SavingsAccount)
+		{
+			SavingsAccount s=(SavingsAccount)a;
+			s.transferFunds();
+		}else if(a instanceof CurrentAccount)
+		{
+			CurrentAccount c=(CurrentAccount)a;
+			c.CalODInt();
+		}else if(a instanceof RecurrentAccount)
+		{
+			RecurrentAccount r=(RecurrentAccount)a;
+			r.calMatAmount();
+		}
+		System.out.println();
+	}
+}
+public class Month{
+	public static void main(String args[]){
+		Transaction t=new Transaction();
+		SavingsAccount s=new SavingsAccount();
+		t.doAction(s);
+		CurrentAccount c=new CurrentAccount();
+		t.doAction(c);
+		RecurrentAccount r=new RecurrentAccount();
+		t.doAction(r);
+		IntrestCal ob=new IntrestCal();
+		List<SavingsAccount> sacc=new ArrayList<>();
+		List<CurrentAccount> cacc=new ArrayList<>();
+		List<RecurrentAccount> racc=new ArrayList<>();
+		SavingsAccount s1=new SavingsAccount();
+		SavingsAccount s2=new SavingsAccount();
+		SavingsAccount s3=new SavingsAccount();
+		sacc.add(s1);
+		sacc.add(s2);
+		sacc.add(s3);
+		ob.retriveamt(sacc);
+		CurrentAccount c1=new CurrentAccount();
+		CurrentAccount c2=new CurrentAccount();
+		CurrentAccount c3=new CurrentAccount();
+		cacc.add(c1);
+		cacc.add(c2);
+		cacc.add(c3);
+		ob.retriveamt(cacc);
+		RecurrentAccount r1=new RecurrentAccount();
+		RecurrentAccount r2=new RecurrentAccount();
+		RecurrentAccount r3=new RecurrentAccount();
+		racc.add(r1);
+		racc.add(r2);
+		racc.add(r3);
+		ob.retriveamt(racc);
+	}
+}
