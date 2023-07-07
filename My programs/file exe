@@ -50,3 +50,25 @@ public class Fileotsexe{
         e.printStackTrace();}
   }
 }
+/*******************sequenceInputStream******************/
+
+import java.io.*;
+public class Fileotsexe{
+public static void main(String args[]){
+try{
+FileInputStream ob1=new FileInputStream("D:\\masti.txt");    //File1 
+FileInputStream ob2=new FileInputStream("D:\\reshu.txt");    //File2
+FileOutputStream out=new FileOutputStream("D:\\nazzu.txt");  //writing in a new file
+SequenceInputStream s1=new SequenceInputStream(ob1,ob2);
+int i;
+while((i=s1.read())!=-1){
+out.write(i);}
+ob1.close();
+ob2.close();
+s1.close();
+System.out.println("file is sucessfully written");
+}
+catch(Exception e){
+e.printStackTrace();}
+}
+}
