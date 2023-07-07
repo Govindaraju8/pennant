@@ -1,0 +1,52 @@
+/******************Fileoutput stream example*****************/
+
+import java.io.FileOutputStream;
+public class Fileotsexe{
+  public static void main(String args[]){
+    try{
+        FileOutputStream ob=new FileOutputStream("D:\\masti.txt");
+        String t="hello my self mastani";
+        ob.write(t.getBytes());
+        ob.close();
+        System.out.println("file is sucessfully written");
+      }
+    catch(Exception e){
+          e.printStackTrace();
+          }
+      }
+}
+/***************fileinput stream exe if the input file contains string ************/
+import java.io.FileInputStream;
+public class Fileotsexe{
+  public static void main(String args[]){
+    try{
+        FileInputStream ob=new FileInputStream("D:\\masti.txt");
+        int i=0;
+        while((i=ob.read())!=-1)
+        {
+        System.out.print((char)i);
+        }
+        ob.close();
+        System.out.println("file is sucessfully written");
+      }
+  catch(Exception e)
+  {
+    e.printStackTrace();
+  }
+}
+}
+/***************fileinput stream exe if the input file contains character ************/
+import java.io.FileInputStream;
+public class Fileotsexe{
+  public static void main(String args[]){
+    try{
+        FileInputStream ob=new FileInputStream("D:\\masti.txt");
+        int i=ob.read();
+        System.out.println((char)i);
+        ob.close();
+        System.out.println("file is sucessfully written");
+      }
+    catch(Exception e){
+        e.printStackTrace();}
+  }
+}
