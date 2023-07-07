@@ -72,3 +72,25 @@ catch(Exception e){
 e.printStackTrace();}
 }
 }
+/*******************ByteArrayOutputStream*****************/
+import java.io.*;
+public class Fileotsexe{
+public static void main(String args[]){
+try{
+FileOutputStream ob1=new FileOutputStream ("D:\\masti1.txt");
+FileOutputStream ob2=new FileOutputStream ("D:\\reshu1.txt");
+
+ByteArrayOutputStream b=new ByteArrayOutputStream();
+String t="hello this text is written in 2 different files at a time";
+b.write(t.getBytes());
+b.writeTo(ob1);
+b.writeTo(ob2);
+ob1.close();
+ob2.close();
+b.close();
+System.out.println("file is sucessfully written");
+}
+catch(Exception e){
+e.printStackTrace();}
+}
+}
