@@ -1,3 +1,5 @@
+/****** using .class()*********/
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -7,7 +9,7 @@ public class Reflexex{
         //Class<SavingsAccount> s=SavingsAccount.class;
         //Class<CurrentAccount> c=CurrentAccount.class;
         //Class<RecurrentAccount> r=RecurrentAccount.class;
-        System.out.println("reflection class getting the name of the class...."+c.getName());
+        System.out.println("reflection class getting the name of the class...."+a.getName());
         Method[] m=a.getDeclaredMethods();//it gives only existing class methods
         //Method[] m=a.getMethods();   it gives complete methods from the parent class also.
         System.out.println("methods of Myprogram...");
@@ -52,6 +54,84 @@ abstract class Account{
 		System.out.println("deposit balance....."+balance);
 	}
 	abstract void withdraw(double amt);
+}
+class SavingsAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for SavingsAccount.......");}
+	public void transferFunds(){
+	System.out.println("transfering funds..........");}
+	
+}
+class CurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for CurrentAccount.......");}
+	public void CalODInt(){
+	System.out.println("transfering funds CalODInt..........");}
+	
+}
+class RecurrentAccount extends Account{
+	public void withdraw(double amt){
+	System.out.println("withdraw over ridding for ReccurentAccount.......");}
+	public void calMatAmount(){
+	System.out.println("transfering funds calMatAmount..........");}
+	
+}
+
+
+/****************using getClass()******************/
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class Reflexex{
+    public static void main(String args[]){
+        Account a=new Account();
+        Class<? extends Account> aob=a.getClass();
+        System.out.println("reflection class getting the name of the class...."+aob.getName());
+        Method[] m=aob.getMethods();
+        System.out.println("methods of Myprogram...");
+        for(Method m1:m){ 
+            System.out.println(m1.getName());
+        }
+        System.out.println("fields of Myprogram.....");
+        Field[] f=aob.getDeclaredFields();
+        for(Field f1:f){
+            System.out.println(f1.getName());
+        }
+        
+    }
+}
+
+class Account{
+	private int Accno;
+	private String title;
+	private double balance;
+	
+	public Account(){
+		this(1000,"",0);
+	}
+	public Account(int n,String t,double b){
+		Accno=n;
+		title=t;
+		balance=b;
+	}
+	public int getAccno(){
+		return Accno;
+	}
+	public void setTitle(String t){
+		title=t;
+	}
+	public double getBalance(){
+		return balance;
+	}		
+	public String getTitle(){
+		return title;
+	}
+	public void deposit(double amt){
+		balance+=amt;
+		System.out.println("deposit balance....."+balance);
+	}
+    //void withdraw(double amt);
 }
 class SavingsAccount extends Account{
 	public void withdraw(double amt){
