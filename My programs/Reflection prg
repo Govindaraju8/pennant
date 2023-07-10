@@ -172,6 +172,10 @@ public class Reflexex{
         // new instance is created using newInstance
         Account a=Account.class.newInstance();
         a.deposit(1000);
+
+//by using newInstance we only create instance for non parametariced constructors
+//that's why from java 9 getDeclaredConstructor method to create an Instance for the parametarized constructors
+
         
         // new Instance is create using getDeclaredConstructor
         Class<Account> a1=Account.class;
