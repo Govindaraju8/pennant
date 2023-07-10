@@ -1,0 +1,157 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import java.io.*;
+
+class Actionexe extends Frame{
+    TextField f1,f2,f3,f4;
+	Choice f5;
+    Actionexe(){
+		//buttons
+        Button b1=new Button("First");
+        Button b2=new Button("Next");
+        Button b3=new Button("Prev");
+        Button b4=new Button("Last");
+        Button b5=new Button("Add");
+        Button b6=new Button("Edit");
+        Button b7=new Button("Delete");
+        Button b8=new Button("Save");
+        Button b9=new Button("Search");
+        Button b10=new Button("clear");
+        Button b11=new Button("Exit");
+		
+		//text fields
+        f1=new TextField();
+        f2=new TextField();
+		
+        f3=new TextField();
+        f4=new TextField();
+        f5= new Choice();
+		f5.add("Select the option");
+        f5.add("Developer");
+        f5.add("Supporter");
+        f5.add("Tester");
+		
+		//labels
+        Label l1=new Label("Employee Name");
+        Label l2=new Label("Employee ID");
+        Label l3=new Label("JOB");
+        Label l4=new Label("Stream");
+        Label l5=new Label("Department");
+		
+		
+		b10.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				f1.setText("");
+				f2.setText("");
+				f3.setText("");
+				f4.setText("");
+				f5.select(0);
+			}
+		});
+		
+		b11.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);
+			}
+		});
+		
+        /*b.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvenet e){
+                t.setText()
+                
+            }
+        });*/
+		
+		//buttons
+        b1.setBounds(100,500,80,30);
+        b2.setBounds(200,500,80,30);
+        b3.setBounds(300,500,80,30);
+        b4.setBounds(400,500,80,30);
+        b5.setBounds(100,550,80,30);
+        b6.setBounds(200,550,80,30);
+        b7.setBounds(300,550,80,30);
+        b8.setBounds(400,550,80,30);
+        b9.setBounds(100,600,80,30);
+        b10.setBounds(200,600,80,30);
+        b11.setBounds(300,600,80,30);
+		
+		f1.setBounds(300,150,100,30);
+        f2.setBounds(300,200,100,30);
+        f3.setBounds(300,250,100,30);
+        f4.setBounds(300,300,100,30);
+        f5.setBounds(300,350,100,30);
+		
+        l1.setBounds(100,150,100,30);
+		l2.setBounds(100,200,100,30);
+		l3.setBounds(100,250,100,30);
+		l4.setBounds(100,300,100,30);
+		l5.setBounds(100,350,100,30);
+		
+        add(b1);add(b2);add(b3);add(b4);
+		add(b5);add(b6);add(b7);add(b8);
+		add(b9);add(b10);add(b11);
+		
+        add(f1);add(f2);add(f3);add(f4);add(f5);
+        add(l1);add(l2);add(l3);add(l4);add(l5);
+		
+        setSize(1000,1000);
+		setTitle("Employee details");
+		setLayout(null);
+		setVisible(true);
+		setBackground(Color.GRAY);
+    }
+}
+class Employee{
+	private String EmpName;
+	private String EmpId;
+	private String EmpJob;
+	private String EmpStr;
+	Employee(String en,String ei,String ej,String es){
+		String EmpName=en;
+		String EmpId=ei;
+		String EmpJob=ej;
+		String EmpStr=es;
+	}
+	public String getEmpName(){
+		return EmpName;
+	}
+	public String getEmpId(){
+		return EmpId;
+	}
+	public String getEmpJob(){
+		return EmpJob;
+	}
+	public String getEmpStr(){
+		return EmpStr;
+	}
+}
+public class ActionMain{
+    public static void main(String args[]){
+        Actionexe e=new Actionexe();
+		ArrayList<Employee> a=new ArrayList<>();
+		try{
+			InputStreamReader Is=new InputStreamReader("E:\\Reshu");
+			BufferedInputStream b=new BufferedInputStream(Is);
+			String i;
+			
+			while((i=b.readLine())!=null){
+				StringTokenizer t=new StringTokenizer(i,",");
+			
+			Employee emp = new Employee("","","","");
+	        if(t.hasMoreTokens()){
+	            emp.setEmpno(t.nextToken().trim());}
+	        if(t.hasMoreTokens()) {
+	            emp.setEmpname(t.nextToken().trim());}
+			if(t.hasMoreTokens()){
+				emp.setEmpjob(t.nextToken().trim());
+			}}
+			b.close();
+			Is.close();	
+			
+		}catch(Exception ex){
+		ex.printStackTrace();}
+		
+		
+    }
+}
