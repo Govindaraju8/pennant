@@ -1,37 +1,3 @@
-import java.time.format.*;
-import java.time.*;
-import java.util.*;
-import java.io.*;
-
-class Account{
-	private int Accno;
-	private String Acctype;
-	private LocalDate date;
-	private double balance;
-	
-	
-	public Account(int n,String t,LocalDate d,double b){
-		Accno=n;
-		Acctype=t;
-		date=d;
-		balance=b;
-	}
-	
-	public void setAccno(int n){
-		Accno=n;
-	}
-	public int getAccno(){
-		return Accno;
-	}
-	public void setBalance(double b){
-		balance=b;
-	}
-	public double getBalance(){
-		return balance;
-
-
-
-
 /***************/
 import java.time.format.*;
 import java.time.*;
