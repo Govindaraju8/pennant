@@ -99,4 +99,86 @@ public class TestCampareTo {
         public abstract int compareTo(Student s);
     }
 }
-/**************************
+/**************************/
+
+import java.util.Comparator;
+
+public class Students implements Comparator<Students> {
+    private String name;
+    private int age;
+
+    public Students(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // Getters and setters (omitted for brevity)
+
+    @Override
+    public int compare(Students student1, Students student2) {
+        return student1.getName().compareTo(student2.getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Student [name=" + name + ", age=" + age + "]";
+    }
+}
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Students> studentsList = new ArrayList<>();
+        studentsList.add(new Students("Alice", 20));
+        studentsList.add(new Students("Bob", 22));
+        studentsList.add(new Students("Charlie", 19));
+        studentsList.add(new Students("David", 21));
+
+        // Sort the students list based on their names using the Students comparator
+        Collections.sort(studentsList, new Students());
+
+        // Print the sorted list
+        for (Students student : studentsList) {
+            System.out.println(student);
+        }
+    }
+}
+/********************************************************************************************/
+import java.util.*;
+class Student implements Comparable<Student>{
+    String name;
+    int Stdid;
+    int age;
+    public Student(String n,int i,int a){
+        name=n;
+        Stdid=i;
+        age=a;
+    }
+    public int compareTo(Student s){
+        return this.age-s.age;
+    }
+
+}
+
+    
+public class TestCampareTo{
+    public static void main(String args[]){
+        ArrayList<Student> s=new ArrayList<Student>();
+        s.add(new Student("reshu",52,20));
+        s.add(new Student("nazzu",50,21));
+        s.add(new Student("masti",53,22));
+        Collections.sort(s);
+        for(Student st:s){
+            System.out.println("name of the student....."+st.name);
+            System.out.println("id of the student......."+st.Stdid);
+            System.out.println("Age of the Student"+st.age);
+            System.out.println("*******************************************************");
+            
+        }
+        
+    }
+}
+
