@@ -217,3 +217,59 @@ public class ConnectDB {
 	}
 
 }
+
+/*************************************************************/
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class ConnectDB {
+
+	public static void main(String[] args) {
+		try {
+		
+		String url="jdbc:postgresql://localhost:5432/postgres";
+		String user="postgres";
+		String password="#Mastani14";
+		
+		Class.forName("org.postgresql.Driver");
+		
+		Connection c=DriverManager.getConnection(url,user,password);
+		
+		//Statement s=c.createStatement();
+		
+		
+		String c2="insert into example(std_name,std_id,section) values(?,?,?)";
+		PreparedStatement p=c.prepareStatement(c2);
+		p.setString(1,"hari");
+		p.setInt(2, 55);
+		p.setInt(3, 12);
+		
+		//int r=s.executeUpdate(c3);
+		
+		//System.out.println("no of lines get effected....."+r);
+		
+		ResultSet rst=p.executeQuery();
+		
+            
+		while(rst.next()) {
+			String stdname=rst.getString("std_name");
+			int stdid=rst.getInt("std_id");
+			int section=rst.getInt("section");
+		
+		System.out.println("student name...."+ stdname +"   student id......"+ stdid +"  section name....."+section);
+		}
+		p.close();
+		c.close();
+		rst.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
