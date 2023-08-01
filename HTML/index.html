@@ -1,94 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <title>Ticket Booking</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <marquee behavior="scroll" direction="right"><h1>Ticket Booking</h1></marquee>
+<marquee behavior="scroll" direction="right"><h1>Ticket Booking</h1></marquee>
 
-
-  
-    <form>
-        <label for="from" id="l1">From</label>
-        <select name="from" id="location1">
+<table class="cen" style="border-spacing: 40px 40px;">
+ 
+    <form name="myform" onsubmit="return valid()">
+    <tr>
+        <td>From:        
+       <select name="from" id="location1">
             <option value="vizag">vizag</option>
             <option value="vijayawada">vijayawada</option>
             <option value="warangal">warangal</option>
             <option value="bangulure">bangulure</option>
-          </select>
-        <label for="to" id="l2">To</label>
-        <select name="to" id="location2">
+          </select></td>
+          
+       <td>To:
+        
+       <select name="to" id="location2">
             <option value="vizag">vizag</option>
             <option value="vijayawada">vijayawada</option>
             <option value="warangal">warangal</option>
             <option value="bangulure">bangulure</option>
-          </select><br>
-       <label for="Train" id="t">Train number</label>
-          <select name="to" id="location2">
+          </select></td>
+   </tr>
+   
+    <tr>  <td> Train name:  
+         <select name="to" id="train">
               <option value="Agniveena Express">Agniveena Express</option>
               <option value="Ahilyanagari Express">Ahilyanagari Express</option>
               <option value="Ahimsa Express">Ahimsa Express</option>
               <option value="Amarnath Express">Amarnath Express</option>
-            </select><br>
-        <label for="class" id="c">Class</label>
-            <select name="to" id="location2">
+            </select></td></tr>
+            
+     <tr> <td>   Class:
+            <select name="to" id="cls">
                 <option value="AC">AC</option>
                 <option value="Non AC">Non AC</option>
                 <option value="General">General</option>
-            </select>
-            <label for="date" id="dt">Date</label>
-            <input type="date" id="dt1" name="dateof">
-    </form>
+            </select></td>
+           <td> Date:
+            <input type="date" id="dt1" name="dateof"></td>
+   
+  </tr>
     
-    <table id="demo" style="width:50%">
-        <p>Passengers</p>
+</table>
+    <table id="demo" style="width:50%" class="cen">
+       <b><center>Passengers</center></b>
         <tr>
             <th>S.No</th>
             <th>Name</th>
             <th>Gender</th>
             <th>Age</th>
         </tr>
-    
+        
         <tr>
         <td><input type="text" name="sno"></td>
+        
         <td><input type="text" name="name"></td>
+        
         <td><select name="gender" id="gen">
             <option value="male">Male</option>
             <option value="femal">female</option>
             <option value="others">others</option>
         </select></td>
+        
         <td><input type="text" name="age"></td>
-        <td><button type="button" onclick="deleteCells()">DELETE</button></td>
+        
+        <td><button type="button" onclick="deleteCells(this)">DELETE</button></td>
     </tr>
 
     </table>
-    <!--p id="demo">hello</p-->
+    
+    <center>
     <button type="button" onclick="addCells()">ADD</button>
     <button type="button" onclick="clearPage()">Clear Page</button>
- 
+    <button type="submit">Submit</button>
+    </center>
+  </form>
     <script>
+    
       function addCells() {
         const mytab = document.getElementById("demo");
         const lr = mytab.rows[mytab.rows.length - 1]; 
         if(lr){
             const nr = lr.cloneNode(true); 
             mytab.appendChild(nr); 
-        }
-
-      }
-      function deleteCells() {
-        const mytab = document.getElementById('demo');
-        const nr1 = mytab.rows.length;
-
-        for (let i =0; i <nr1; i--) {
-      mytab.deleteRow(i);
-    }
-  }
-   function clearPage() {
-    document.getElementById('content').innerHTML = "";
+        	}
+      	}
+      
+     function deleteCells(r) {
+    	var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById('demo').deleteRow(i);
     }
   
+   	/*function clearPage() {
+    	document.getElementById('').reset();
+    }*/
+  	function valid(){
+	  	var n=document.myform.name.value;
+	  	var s=document.myform.sno.value;
+	  	var p=document.myform.age.value;
+	  	if(n==null || n==""){
+		  	alert("enter the name fields");
+		  	return false;  
+	  	}
+	  	else if(p==null || p==""){
+		  	alert("enter the age fields");
+		  	return false;  
+	  	}
+	  	else if(s==null || s==""){
+		  	alert("enter the sno fields");
+		  	return false;  
+	  	}
+		else if(isNaN(p))
+			{
+				alert("Enter the numeric value");
+				return false;
+			}
+		else if(isNaN(s))
+		{
+			alert("sno must be numeric");
+			return false;
+		}
+		else if(p<0 || p>100)
+		{
+			alert("Enter the valid age");
+			return false;
+		}
+	  	return true;
+	}
     </script>
     
 </body>
