@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <marquee behavior="scroll" direction="right"><h1>Ticket Booking</h1></marquee>
+
+
+  
+    <form>
+        <label for="from" id="l1">From</label>
+        <select name="from" id="location1">
+            <option value="vizag">vizag</option>
+            <option value="vijayawada">vijayawada</option>
+            <option value="warangal">warangal</option>
+            <option value="bangulure">bangulure</option>
+          </select>
+        <label for="to" id="l2">To</label>
+        <select name="to" id="location2">
+            <option value="vizag">vizag</option>
+            <option value="vijayawada">vijayawada</option>
+            <option value="warangal">warangal</option>
+            <option value="bangulure">bangulure</option>
+          </select><br>
+       <label for="Train" id="t">Train number</label>
+          <select name="to" id="location2">
+              <option value="Agniveena Express">Agniveena Express</option>
+              <option value="Ahilyanagari Express">Ahilyanagari Express</option>
+              <option value="Ahimsa Express">Ahimsa Express</option>
+              <option value="Amarnath Express">Amarnath Express</option>
+            </select><br>
+        <label for="class" id="c">Class</label>
+            <select name="to" id="location2">
+                <option value="AC">AC</option>
+                <option value="Non AC">Non AC</option>
+                <option value="General">General</option>
+            </select>
+            <label for="date" id="dt">Date</label>
+            <input type="date" id="dt1" name="dateof">
+    </form>
+    
+    <table id="demo" style="width:50%">
+        <p>Passengers</p>
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+        </tr>
+    
+        <tr>
+        <td><input type="text" name="sno"></td>
+        <td><input type="text" name="name"></td>
+        <td><select name="gender" id="gen">
+            <option value="male">Male</option>
+            <option value="femal">female</option>
+            <option value="others">others</option>
+        </select></td>
+        <td><input type="text" name="age"></td>
+        <td><button type="button" onclick="deleteCells()">DELETE</button></td>
+    </tr>
+
+    </table>
+    <!--p id="demo">hello</p-->
+    <button type="button" onclick="addCells()">ADD</button>
+    <button type="button" onclick="clearPage()">Clear Page</button>
+ 
+    <script>
+      function addCells() {
+        const mytab = document.getElementById("demo");
+        const lr = mytab.rows[mytab.rows.length - 1]; 
+        if(lr){
+            const nr = lr.cloneNode(true); 
+            mytab.appendChild(nr); 
+        }
+
+      }
+      function deleteCells() {
+        const mytab = document.getElementById('demo');
+        const nr1 = mytab.rows.length;
+
+        for (let i =0; i <nr1; i--) {
+      mytab.deleteRow(i);
+    }
+  }
+   function clearPage() {
+    document.getElementById('content').innerHTML = "";
+    }
+  
+    </script>
+    
+</body>
+</html>

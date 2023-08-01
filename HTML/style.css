@@ -1,0 +1,21 @@
+h1 { 
+    text-align:center;
+    color: white;
+    background-color:black;
+}
+body {
+    background-image:url("train.avif");
+    
+    background-position: right top;
+}
+#l1,#l2,#t,#c,#dt,p{
+    font-size: 25px;
+    color: white;
+}
+table, th {
+    
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: cornsilk;
+  }
+  
