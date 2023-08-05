@@ -273,3 +273,72 @@ public class ConnectDB {
 
 }
 
+/******************************************************************************************************/
+
+import java.sql.Connection;
+import java.sql.CallableStatement;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class ConnectDB {
+
+	public static void main(String[] args) {
+		try {
+		
+		String url="jdbc:postgresql://localhost:5432/postgres";
+		String user="postgres";
+		String password="#Mastani14";
+		
+		Class.forName("org.postgresql.Driver");
+		
+		Connection c=DriverManager.getConnection(url,user,password);
+	
+		String call= "{call my_procd(?,?,?)}";
+		CallableStatement cs=c.prepareCall(call);
+	
+		
+		cs.setInt(1, 12);
+		cs.setString(2, "hello");
+		cs.setInt(3, 13);
+		cs.execute();
+		
+		// Retrieve and print table values using PreparedStatement
+        String sql = "SELECT * FROM example";
+        PreparedStatement s = c.prepareStatement(sql);
+        ResultSet rst = s.executeQuery();
+        
+        
+        int r = cs.getUpdateCount();
+		System.out.println("no of lines get effected....."+r);
+            
+		
+		while(rst.next()) {
+			String stdname=rst.getString("std_name");
+			int stdid=rst.getInt("std_id");
+			int section=rst.getInt("section");
+		
+		System.out.println("student name...."+ stdname +"   student id......"+ stdid +"  section name....."+section);
+		}
+		s.close();
+		cs.close();
+		rst.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
+
+CREATE OR REPLACE FUNCTION my_procd(IN param1 INTEGER, IN param2 VARCHAR, IN param3 INTEGER)
+RETURNS VOID AS
+$$
+BEGIN
+    insert into example(std_id,std_name,section)values(153,'reshushaik',200);
+END;
+$$
+LANGUAGE PLPGSQL;
